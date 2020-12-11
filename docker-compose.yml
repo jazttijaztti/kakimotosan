@@ -1,0 +1,28 @@
+version: '2'
+services:
+  myapp:
+    image: 'docker.io/bitnami/codeigniter:3-debian-10'
+    ports:
+      - '8000:8000'
+    volumes:
+      - '.:/app'
+    depends_on:
+      - mariadb
+  mariadb:
+    image: 'docker.io/bitnami/mariadb:10.3-debian-10'
+    expose:
+      - '3306'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+  # phpmyadmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:4.6.4-1
+    ports:
+      - "8888:80"
+    links:
+      - mariadb
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mariadb
+      - PMA_USER=root
+      - PMA_PASSWORD=

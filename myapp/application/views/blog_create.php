@@ -9,14 +9,12 @@
 <?= form_open('blog/register') ?>
 
 <div>
-<?php foreach($categories as $key =>$category) { ?>
-<?= form_radio('category',$category['id']) ?><?= $category['name'] ?>
-<?php } ?>
+<?php show_ctg($categories); ?>
 </div>
 <div>
-<?php foreach($tags as $key2 =>$tag) { ?>
-<?= form_radio('tags',$tag['id']) ?> <?= $tag['name'] ?>
-<?php } ?><br>
+
+<?php show_tags($tags) ?>
+
 タイトル<?= form_input('title') ?>
 <br>
 本文<br>
